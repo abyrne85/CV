@@ -22,8 +22,8 @@ jobs:
       - name: html to pdf
         uses: fifsky/html-to-pdf-action@master
         with:
-          htmlFile: CV.html
-          outputFile: CV.pdf
+          htmlFile: ./CV.html
+          outputFile: ./CV-Andrew-Byrne.pdf
           pdfOptions: '{"format": "A4"}'
 
       - name: Upload artifacts
