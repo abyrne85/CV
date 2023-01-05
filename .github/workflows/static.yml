@@ -29,7 +29,6 @@ jobs:
         with:
           htmlFile: ./CV.html
           outputFile: ./CV-Andrew-Byrne.pdf
-          pdfOptions: '{"format": "A4"}'
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
