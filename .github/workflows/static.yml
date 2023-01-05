@@ -24,7 +24,7 @@ jobs:
         with:
           htmlFile: ./CV.html
           outputFile: ./example.pdf
-          pdfOptions: '{"format": "A4"}}'
+          pdfOptions: '{"format": "A4"}'
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
