@@ -9,28 +9,25 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow one concurrent deployment
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
 jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+  html_to_pdf:
+    name: Generate PDF
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+
     steps:
-      - name: HTML to PDF
-        uses: fifsky/html-to-pdf-action@v0.1.0
+      - name: html to pdf
+        uses: fifsky/html-to-pdf-action@master
         with:
           htmlFile: ./CV.html
-          outputFile: ./public/cv.pdf
-          pdfOptions: '{"format": "A4"}'
+          outputFile: ./example.pdf
+          pdfOptions: '{"format": "A4"}}'
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: Example PDF
+          path: ./example.pdf
